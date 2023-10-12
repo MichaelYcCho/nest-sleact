@@ -8,12 +8,18 @@ import { UsersModule } from './users/users.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { ChannelsModule } from './channels/channels.module';
 import { DmsModule } from './dms/dms.module';
-import { CgabbeksService } from './cgabbeks/cgabbeks.service';
+import { UsersService } from './users/users.service';
 
 @Module({
-  imports: [ConfigModule.forRoot(nestConfig), UsersModule, WorkspacesModule, ChannelsModule, DmsModule],
+  imports: [
+    ConfigModule.forRoot(nestConfig),
+    UsersModule,
+    WorkspacesModule,
+    ChannelsModule,
+    DmsModule,
+  ],
   controllers: [AppController],
-  providers: [AppService, ConfigService, CgabbeksService],
+  providers: [AppService, ConfigService, UsersService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
