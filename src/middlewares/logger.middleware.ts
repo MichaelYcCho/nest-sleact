@@ -1,6 +1,7 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 
+// Controller가 시작되기 전에 실행되면 끝나고 난 후에 Logger을 실행
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   private logger = new Logger('HTTP'); // HTTP 관련 요청들은 해당 로거를 사용
