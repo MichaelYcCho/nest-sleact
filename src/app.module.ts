@@ -46,10 +46,13 @@ import { Workspaces } from './entities/Workspaces';
       synchronize: false,
       logging: true,
     }),
-    TypeOrmModule.forFeature([Users]),
+
+    UsersModule,
+    WorkspacesModule,
+    ChannelsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ConfigService, UsersService],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
