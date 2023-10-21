@@ -12,18 +12,6 @@ export class UsersService {
   ) {}
 
   async postUsers(email: string, nickname: string, password: string) {
-    if (!email) {
-      throw new HttpException('이메일이 없습니다.', 400);
-    }
-
-    if (!nickname) {
-      throw new HttpException('닉네임이 없습니다.', 400);
-    }
-
-    if (!password) {
-      throw new HttpException('비밀번호가 없습니다.', 400);
-    }
-
     const user = await this.userRepository.findOne({
       where: { email },
     });
