@@ -19,6 +19,7 @@ import {
 import { UserDto } from 'src/common/dto/user.dto';
 import { UndefinedToNullInterceptor } from 'src/common/interceptors/undefinedToNull.interceptor';
 import { LocalAuthGuard } from 'src/auth/local-auth.guard';
+import { LoggedInGuard } from 'src/auth/logged-in.guard';
 
 @UseInterceptors(UndefinedToNullInterceptor)
 @ApiTags('USER')
@@ -39,7 +40,7 @@ export class UsersController {
   @ApiOperation({ summary: '회원가입' })
   @Post()
   async join(@Body() data: JoinRequestDto) {
-    await this.usersService.postUsers(data.email, data.nickname, data.password);
+    await this.usersService.join(data.email, data.nickname, data.password);
     return 'create user';
   }
 
@@ -59,6 +60,7 @@ export class UsersController {
     return 'user login';
   }
 
+  @UseGuards(LoggedInGuard)
   @ApiOperation({ summary: '로그아웃' })
   @Post('logout')
   logOut(@Req() req, @Res() res) {
