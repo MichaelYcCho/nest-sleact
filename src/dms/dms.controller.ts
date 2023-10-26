@@ -1,8 +1,8 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('DMS')
-@Controller('api/workspaces')
+@ApiTags('DM')
+@Controller('api/workspaces/:url/dms')
 export class DmsController {
   @ApiParam({
     name: 'url',
@@ -12,21 +12,30 @@ export class DmsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: '사용자 id',
+    description: '사용자 아이디',
   })
   @ApiQuery({
     name: 'perPage',
     required: true,
-    description: '한번에 가져오는 개수',
+    description: '한 번에 가져오는 개수',
   })
   @ApiQuery({
     name: 'page',
     required: true,
     description: '불러올 페이지',
   })
-  @Get(':url/dms/:id/chats')
+  @Get(':id/chats')
   getChat(@Query() query, @Param() param) {
     console.log(query.perPage, query.page);
     console.log(param.id, param.url);
   }
+
+  // @Get(':id/chats')
+  // getChat(@Query('perPage') perPage, @Query('page') page, @Param('url') url, @Param('id') id) {
+  //   console.log(perPage, page);
+  //   console.log(url, id)
+  // }
+
+  @Post(':id/chats')
+  postChat(@Body() body) {}
 }
