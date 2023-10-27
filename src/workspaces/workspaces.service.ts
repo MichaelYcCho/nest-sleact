@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { ChannelMembers } from '../entities/ChannelMembers';
-import { Channels } from '../entities/Channels';
-import { Users } from '../entities/Users';
-import { WorkspaceMembers } from '../entities/WorkspaceMembers';
 import { Workspaces } from '../entities/Workspaces';
+import { Repository } from 'typeorm';
+import { Channels } from '../entities/Channels';
+import { WorkspaceMembers } from '../entities/WorkspaceMembers';
+import { ChannelMembers } from '../entities/ChannelMembers';
+import { Users } from '../entities/Users';
 
 @Injectable()
 export class WorkspacesService {
@@ -72,6 +72,13 @@ export class WorkspacesService {
         },
       },
     });
+
+    // Query Builder Case
+    // const query = this.workspacesRepository
+    //   .createQueryBuilder('workspace')
+    //   .innerJoinAndSelect('workspace.Channels', 'channels')
+    //   .getOne();
+
     const user = await this.usersRepository.findOne({ where: { email } });
     if (!user) {
       return null;
