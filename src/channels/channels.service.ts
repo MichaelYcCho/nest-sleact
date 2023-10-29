@@ -139,7 +139,7 @@ export class ChannelsService {
     return this.channelChatsRepository.count({
       where: {
         ChannelId: channel.id,
-        createdAt: MoreThan(new Date(after)),
+        createdAt: MoreThan(new Date(after)), //createdAt > after
       },
     });
   }
