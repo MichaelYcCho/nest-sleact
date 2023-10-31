@@ -53,6 +53,7 @@ import { EventsModule } from './events/events.module';
     WorkspacesModule,
     ChannelsModule,
     EventsModule,
+    DmsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
